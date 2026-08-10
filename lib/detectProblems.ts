@@ -25,7 +25,7 @@ export function detectProblems(): Problem[] {
   }
 
   // 2. Product conversion drops
-  for (const product in thisWeek.productConversion) {
+for (const product of Object.keys(thisWeek.productConversion) as Array<keyof typeof thisWeek.productConversion>) {
     const current = thisWeek.productConversion[product];
     const previous = lastWeek.productConversion[product];
     if (current < previous) {
