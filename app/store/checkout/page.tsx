@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-export default function CheckoutPage() {
+function CheckoutForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -91,5 +91,13 @@ export default function CheckoutPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<p className="text-center mt-10 text-gray-500">Loading checkout...</p>}>
+      <CheckoutForm />
+    </Suspense>
   );
 }
